@@ -1,0 +1,7 @@
+.idea/
+derby.log
+target/
+sample-data/outputDir/
+project/target/
+project/project/
+

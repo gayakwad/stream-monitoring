@@ -1,0 +1,21 @@
+groups:
+- name: batch_job_rules.yml
+  rules:
+
+  - alert: WCBatchJobNotCompleted
+    expr: min(time() - wc_batch_job_last_success_unixtime{job="push-gateway"}) > 60 * 5
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      description: Word Count batch job has not completed successfully before expected time
+      summary: Batch job supposed to run every 5 mins
+
+  - alert: WCBatchJobTooSlow
+    expr: wc_batch_job_duration_seconds{job="push-gateway"} > 3
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      description: Word Count batch job too slow
+      summary: Batch job took more than 3 sec to run

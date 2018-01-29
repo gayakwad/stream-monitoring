@@ -1,0 +1,1 @@
+{{ define "slack.alert.text" }} [{{ .GroupLabels.alertname }}] {{ .CommonAnnotations.description}} - {{ .CommonAnnotations.summary}} {{ end}}

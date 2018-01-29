@@ -1,0 +1,16 @@
+global:
+  slack_api_url: 'https://hooks.slack.com/services/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'
+
+route:
+  receiver: 'slack-notifications'
+  group_by:
+  - alertname
+
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#alerts'
+    text: '{{ template "slack.alert.text" . }}'
+
+templates:
+- '/etc/alertmanager/templates/slack_alert.tmpl'
